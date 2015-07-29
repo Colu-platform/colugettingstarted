@@ -1,4 +1,4 @@
-// http://documentation.colu.co/#IssuewithMetadata
+// http://documentation.colu.co/#IssueandSend
 
 var Colu = require('colu')
 var settings = {
@@ -10,12 +10,11 @@ var settings = {
 var colu = new Colu(settings)
 
 var asset = {
-    amount: 500,
-    metadata: {        
-        'assetName': 'Mission Impossible 15',
-        'issuer': 'Fox Theater',
-        'description': 'Movie ticket to see the New Tom Cruise flick'
-    }
+    amount: 1000000,
+    reissueable: true,
+    transfer: [{
+        address: 'mvaHph557j63CyJxmEaJ8F38SC3cNetvaa', amount: 250000
+    }]
 }
 
 colu.on('connect', function () {

@@ -1,15 +1,15 @@
 // http://documentation.colu.co/#ReissuinganAsset
 
-var testnetApi = 'https://testnet.api.coloredcoins.org'
-var coluHost = 'https://testnet.engine.colu.co'
-var privateSeed = 'abcd4986fdac1b3a710892ef6eaa708d619d67100d0514ab996582966f927982'
+var Colu = require('colu')
 var settings = {
-    coloredCoinsHost: testnetApi,
-    coluHost: coluHost,
+    coloredCoinsHost: 'https://testnet.api.coloredcoins.org',
+    coluHost: 'https://testnet.engine.colu.co',
     network: 'testnet',
-    privateSeed: privateSeed
+    privateSeed: 'abcd4986fdac1b3a710892ef6eaa708d619d67100d0514ab996582966f927982'
 }
-issueAddress = 'mpAUurhbWXFtczKVPn7iLf7rfcDhMdH6tH'
+var colu = new Colu(settings)
+
+issueAddress = 'mqkDiBtyuD5qAyRNKDZ1LTu97LrbK9sE2L'
 
 var asset = {
     amount: 1000000,
@@ -17,11 +17,8 @@ var asset = {
     issueAddress: issueAddress
 }
 
-var Colu = require('colu')
-var colu = new Colu(settings)
-
 colu.on('connect', function () {
-    colu.financedIssue(asset, function (err, body) {
+    colu.issueAsset(asset, function (err, body) {
         if (err) return console.error(err)        
         console.log("Body: ",body)
     })

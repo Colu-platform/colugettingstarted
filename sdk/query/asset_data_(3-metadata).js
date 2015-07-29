@@ -1,22 +1,19 @@
 // http://documentation.colu.co/#AssetData
 
-var testnetApi = 'https://testnet.api.coloredcoins.org'
-var coluHost = 'https://testnet.engine.colu.co'
+var Colu = require('colu')
 var settings = {
-    coloredCoinsHost: testnetApi,
-    coluHost: coluHost,
+    coloredCoinsHost: 'https://testnet.api.coloredcoins.org',
+    coluHost: 'https://testnet.engine.colu.co',
     network: 'testnet'
 }
-var assetId = 'LEUWnac9Pp7kZYC3W19xtVMVqL8jw6m19RZHu'
-var params = {
-    assetId: assetId
-}
-
-var Colu = require('colu')
 var colu = new Colu(settings)
 
+var asset = {
+    assetId: 'LEUWnac9Pp7kZYC3W19xtVMVqL8jw6m19RZHu'
+}
+
 colu.on('connect', function () {
-    colu.coloredCoins.getassetdata(params,function (err, body) {
+    colu.coloredCoins.getAssetData(asset,function (err, body) {
         if (err) return console.error(err)
         var util = require('util')        
         console.log("Body: ",util.inspect(body, {depth:10}))

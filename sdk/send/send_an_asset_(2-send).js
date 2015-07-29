@@ -1,17 +1,16 @@
 // http://documentation.colu.co/#SendanAsset
 
-var testnetApi = 'https://testnet.api.coloredcoins.org';
-var coluHost = 'https://testnet.engine.colu.co';
-var privateSeed = 'abcd4986fdac1b3a710892ef6eaa708d619d67100d0514ab996582966f927982';
+var Colu = require('colu')
 var settings = {
-    coloredCoinsHost: testnetApi,
-    coluHost: coluHost,
+    coloredCoinsHost: 'https://testnet.api.coloredcoins.org',
+    coluHost: 'https://testnet.engine.colu.co',
     network: 'testnet',
-    privateSeed: privateSeed
-};
+    privateSeed: 'abcd4986fdac1b3a710892ef6eaa708d619d67100d0514ab996582966f927982'
+}
+var colu = new Colu(settings)
 
-var assetId = 'LK4heYpgK1EJD2ev111wAfyMLzssXXJ5N5YY1';
-var fromAddress = 'mx2sSW67Fuu7iCJNJ3DEFmtEtZqhWrfMZC';
+var assetId = 'LKrCQfWSepMFyeCbnvWL33FH12gPFoPvqqw7a';
+var fromAddress = 'mvRrPRR8F4nbKa3mPSx68pzLerjBHFL1py';
 var toAddress = 'mfhdwaZd9csRDGVPBGVZeup45JpEGvYqhA';
 
 var send = {
@@ -28,11 +27,8 @@ var send = {
     }
 };
 
-var Colu = require('colu');
-var colu = new Colu(settings);
-
 colu.on('connect', function () {
-    colu.financedSend(send, function (err, body) {
+    colu.sendAsset(send, function (err, body) {
         if (err) return console.error(err)        
         console.log("Body: ",body)
     })
